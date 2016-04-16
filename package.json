@@ -20,7 +20,7 @@
     "deep",
     "clone"
   ],
-  "author": "Sebastian Ma <ma.tian.pro@gmail.com> (https://github.com/sebastian1118)",
+  "author": "Sebastian Ma <tian.ma.pro@gmail.com> (https://github.com/sebastian1118)",
   "license": "MIT",
   "dependencies": {
     "deep-extend": "^0.4.1",
