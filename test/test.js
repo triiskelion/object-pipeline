@@ -1,20 +1,21 @@
 'use strict'
 
-var expect = require('chai').expect
+let expect = require('chai').expect
+
 let ObjectPipeline = require('../index')
 
 describe('map', function () {
   it('should map object', function () {
 
     let pipeline = ObjectPipeline().map(
-      (val, ctx)=> {
-        if ( typeof val == 'number' ) {
-          ctx.update(val + 1)
+      (node)=> {
+        if ( typeof node.value == 'number' ) {
+          node.updateValue(node.value + 1)
         }
       },
-      (val, ctx)=> {
-        if ( typeof val == 'string' ) {
-          ctx.update('')
+      (node)=> {
+        if ( typeof node == 'string' ) {
+          node.updateValue('')
         }
       }
     )
@@ -54,14 +55,14 @@ describe('map', function () {
   it('should map array', function () {
 
     let pipeline = ObjectPipeline().map(
-      (val, ctx)=> {
-        if ( typeof val == 'number' ) {
-          ctx.update(val + 1)
+      (node)=> {
+        if ( typeof node.value == 'number' ) {
+          node.updateValue(node.value + 1)
         }
       },
-      (val, ctx)=> {
-        if ( typeof val == 'string' ) {
-          ctx.update('')
+      (node)=> {
+        if ( typeof node.value == 'string' ) {
+          node.updateValue('')
         }
       }
     )
@@ -98,8 +99,8 @@ describe('filter', function () {
   it('should filter object by predicates', function () {
 
     let pipeline = ObjectPipeline().filter(
-      (val, ctx)=> {
-        return typeof val == 'number'
+      (node)=> {
+        return node.type == 'number'
       }
     )
     pipeline.write({
@@ -140,8 +141,8 @@ describe('filter', function () {
   it('should filter array by predicates', function () {
 
     let pipeline = ObjectPipeline().filter(
-      (val, ctx)=> {
-        return typeof val == 'number'
+      (node)=> {
+        return node.type == 'number'
       }
     )
     pipeline.write(
