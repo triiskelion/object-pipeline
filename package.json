@@ -1,0 +1,33 @@
+{
+  "name": "object-pipeline",
+  "version": "1.0.0",
+  "description": "An object processing transform stream",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:triiskelion/object-pipeline.git"
+  },
+  "keywords": [
+    "stream",
+    "object",
+    "map",
+    "transform",
+    "filter",
+    "traverse",
+    "recursive",
+    "deep",
+    "clone"
+  ],
+  "author": "Sebastian Ma <ma.tian.pro@gmail.com> (https://github.com/sebastian1118)",
+  "license": "MIT",
+  "dependencies": {
+    "deep-extend": "^0.4.1",
+    "readable-stream": "^2.0.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "latest"
+  }
+}
