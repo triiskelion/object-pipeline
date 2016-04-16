@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An object processing transform stream",
   "scripts": {
-    "test": "mocha test/test.js"
+    "test": "mocha test/"
   },
   "repository": {
     "type": "git",

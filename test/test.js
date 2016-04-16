@@ -4,17 +4,17 @@ let expect = require('chai').expect
 
 let ObjectPipeline = require('../index')
 
-describe('map', function () {
+describe('map()', function () {
   it('should map object', function () {
 
     let pipeline = ObjectPipeline().map(
       (node)=> {
-        if ( typeof node.value == 'number' ) {
+        if ( node.type == 'number' ) {
           node.updateValue(node.value + 1)
         }
       },
       (node)=> {
-        if ( typeof node == 'string' ) {
+        if ( node.type == 'string' ) {
           node.updateValue('')
         }
       }
@@ -78,7 +78,7 @@ describe('map', function () {
   })
 })
 
-describe('filter', function () {
+describe('filter()', function () {
 
   it('should filter object by path', function () {
 
@@ -154,6 +154,32 @@ describe('filter', function () {
       )
     })
 
+  })
+})
+
+describe('writeSync', function () {
+  it('should transform object synchronously', function () {
+
+    let pipeline = ObjectPipeline()
+      .map((node)=> {
+        if ( node.key == 'yes' ) {
+          node.updateValue('oui')
+        }
+      })
+      .filter(['propC', 'propE', 'yes'])
+
+    let ret = pipeline.writeSync(
+      { propA: 1, propB: "", propC: { propD: "wrong", propE: { yes: "yes", no: "no" } } }
+    )
+    expect(ret).to.deep.equal(
+      {
+        propC: {
+          propE: {
+            yes: "oui"
+          }
+        }
+      }
+    )
   })
 })
 
